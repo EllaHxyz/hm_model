@@ -1,5 +1,7 @@
 import torch
 
+import torch
+
 # registry is need to register our new model so as to be MMF discoverable
 from mmf.common.registry import registry
 
@@ -30,8 +32,7 @@ class ConcatBERTTutorial(BaseModel):
     @classmethod
     def config_path(cls):
         # Relative to user dir root
-        #return "configs/models/concat_bert_tutorial/defaults.yaml"
-        return "configs/models/concat_bert_tutorial/defualts.yaml"
+        return "hm_model/configs/models/concat_bert_tutorial.yaml"
 
     # Each method need to define a build method where the model's modules
     # are actually build and assigned to the model
