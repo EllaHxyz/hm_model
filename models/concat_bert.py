@@ -1,7 +1,5 @@
 import torch
 
-import torch
-
 # registry is need to register our new model so as to be MMF discoverable
 from mmf.common.registry import registry
 
@@ -17,8 +15,8 @@ from mmf.utils.build import (
 
 
 # Register the model for MMF, "concat_bert_tutorial" key would be used to find the model
-@registry.register_model("concat_bert_tutorial")
-class ConcatBERTTutorial(BaseModel):
+@registry.register_model("concat_bert")
+class ConcatBERT(BaseModel):
     # All models in MMF get first argument as config which contains all
     # of the information you stored in this model's config (hyperparameters)
     def __init__(self, config):
