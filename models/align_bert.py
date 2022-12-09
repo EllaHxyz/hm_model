@@ -84,7 +84,7 @@ class AlignBERT(BaseModel):
         """
         fusion layer params
         """
-        self.fusion = torch.nn.Linear(**self.config.fusion.params)
+        #self.fusion = torch.nn.Linear(**self.config.fusion.params)
 
         """
         For classifer, configuration would look like:
@@ -106,7 +106,7 @@ class AlignBERT(BaseModel):
         other layers:
         dropout layer and activation layer
         """
-        self.dropout = torch.nn.Dropout(self.config.dropout)
+        #self.dropout = torch.nn.Dropout(self.config.dropout)
         self.relu = torch.nn.ReLU()
 
     # Each model in MMF gets a dict called sample_list which contains
@@ -133,8 +133,8 @@ class AlignBERT(BaseModel):
         text_features = self.text_proj(text_features)
 
         #Normalize
-        image_features = F.normalize(image_features, p=2, dim=1) # [batch_size, d]
-        text_features = F.normalize(text_features, p=2, dim=1) # [batch_size, d]
+        #image_features = F.normalize(image_features, p=2, dim=1) # [batch_size, d]
+        #text_features = F.normalize(text_features, p=2, dim=1) # [batch_size, d]
 
         #Fusion: Align
         combined = torch.mul(image_features, text_features)  # [batch_size, d]

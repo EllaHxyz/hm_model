@@ -1,4 +1,4 @@
-iimport torch
+import torch
 
 # registry is need to register our new model so as to be MMF discoverable
 from mmf.common.registry import registry
