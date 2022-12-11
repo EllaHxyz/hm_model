@@ -139,7 +139,10 @@ class CrossBERT(BaseModel):
         #Fusion: Cross [batch, d, d]
         combined = torch.bmm(image_features.unsqueeze(2), text_features.unsqueeze(1))
         #fused = self.dropout(self.relu(self.fusion(combined)))
-
+        
+        #Flatten vector [batch, d*d]
+        combined = torch.flatten(combined, start_dim=1)
+        
         # Pass final tensor to classifier to get scores
         logits = self.classifier(combined)
 
