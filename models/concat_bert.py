@@ -70,7 +70,17 @@ class ConcatBERT(BaseModel):
             num_attention_heads: 12
         """
         self.language_module = build_text_encoder(self.config.text_encoder)
+        
+        """
+        Projection & Fusion
 
+        To align image and text encoder output, first, we project embeddings via a projection layer to
+        same dimensionality. Then we compute the element-wise product between text and image projection.
+        """
+        self.text_proj = torch.nn.Linear(**self.config.text_projection.params)
+        self.image_proj = torch.nn.Linear(**self.config.image_projection.params)
+        
+        
         """
         For classifer, configuration would look like:
         # Specifies the type of the classifier, in this case mlp
@@ -102,7 +112,11 @@ class ConcatBERT(BaseModel):
         # Flatten the embeddings before concatenation
         image_features = torch.flatten(image_features, start_dim=1)
         text_features = torch.flatten(text_features, start_dim=1)
-
+        
+        #Projection before fusion
+        image_features = self.image_proj(image_features)
+        text_features = self.text_proj(text_features)
+        
         # Concatenate the features returned from two modality encoders
         combined = torch.cat([text_features, image_features], dim=1)
 
