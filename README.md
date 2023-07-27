@@ -1,8 +1,7 @@
-# Hateful Memes Example using MMF
+# Hateful Memes Detection using MMF
 
-This repository serves as an example of how to use MMF as a library in your projects and build on top of it.
+This repository build and test 3 mid-fusion BERT models to detect hateful speeches with MMF. 
 
-The example tries to replicate the model developed in DrivenData's [blog post](https://www.drivendata.co/blog/hateful-memes-benchmark/) on the Hateful Memes.
 
 ## Installation
 
